@@ -1,0 +1,44 @@
+{# freepost
+ # http://freepo.st
+ # 
+ # Copyright © 2014-2015 zPlus
+ # 
+ # This file is part of freepost.
+ # freepost is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU Affero General Public License as
+ # published by the Free Software Foundation, either version 3 of the
+ # License, or (at your option) any later version.
+ # 
+ # freepost is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ # GNU Affero General Public License for more details.
+ # 
+ # You should have received a copy of the GNU Affero General Public License
+ # along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+{# A single post in PostsList/list.html.twig #}
+
+<div class="postCompact" data-hashid="{{ aPost.hashId }}">
+    
+    {# Comments #}
+    <a class="none comments" target="_self" href="{{ path('freepost_post', {'communityName': community.name, 'postHashId': aPost.hashId, 'postTitle': aPost.title}) }}">
+        {{ aPost.commentsCount > 0 ? aPost.commentsCount }}
+        COMMENTS
+    </a>
+    
+    {# User picture #}
+    <div class="picture">
+        <img alt="" title="{{ aPost.user.username }}" src="{{ url('freepost_user_picture', {'userHashId': aPost.user.hashId}) }}" />
+    </div>
+    
+    {# Post title #}
+    <div class="title">
+        {{ aPost.title|raw }}
+    </div>
+    
+</div>
+
+
+

@@ -1,0 +1,98 @@
+# freepost
+# http://freepo.st
+# 
+# Copyright © 2014-2015 zPlus
+# 
+# This file is part of freepost.
+# freepost is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# 
+# freepost is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with freepost. If not, see <http://www.gnu.org/licenses/>.
+
+AppBundle\Entity\Post:
+    type: entity
+    table: `post`
+    repositoryClass: AppBundle\Entity\Repository\Post
+    entityListeners:
+        AppBundle\Entity\Listener\Post: ~
+    
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    fields:
+        hashId:
+            type: string
+            length: 32
+        created:
+            column: `created`
+            type: datetime
+        dateCreated:
+            column: `dateCreated`
+            type: date
+        title:
+            column: `title`
+            type: string
+            length: 255
+        text:
+            column: `text`
+            type: text
+        vote:
+            column: `vote`
+            type: integer
+        commentsCount:
+            column: `commentsCount`
+            type: integer
+            unsigned: true
+
+    
+    uniqueConstraints:
+        hashId:
+            columns: hashId
+
+    
+    indexes:
+        created:
+            columns: created
+        dateCreated:
+            columns: dateCreated
+        vote:
+            columns: vote
+
+    
+    oneToMany:
+        comments:
+            targetEntity: Comment
+            mappedBy: post
+        votes:
+            targetEntity: VotePost
+            mappedBy: post
+
+    
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: posts
+            joinColumn:
+                name: userId
+                referencedColumnName: id
+        community:
+            targetEntity: Community
+            inversedBy: posts
+            joinColumn:
+                name: communityId
+                referencedColumnName: id
+
+    
+    lifecycleCallbacks: {  }

@@ -1,0 +1,365 @@
+/* freepost
+ * http://freepo.st
+ *
+ * Copyright © 2014-2015 zPlus
+ * 
+ * This file is part of freepost.
+ * freepost is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * freepost is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#toolbar {
+    font-size: .8em;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+}
+
+    #toolbar > li {
+        border-bottom: 1px solid transparent;
+        cursor: pointer;
+        display: inline-block;
+        float: right;
+        margin: 0 0 0 1em;
+        padding: .5em 0 .2em 0;
+        transition: all .5s;
+    }
+    
+    #toolbar > li:hover {
+        border-bottom-color: #aaa;
+    }
+    
+    #toolbar > li.selected {
+        border-bottom-color: #888;
+    }
+    
+    /* "Submit" button */
+    #toolbar > #submit {
+        border: 0;
+        float: left;
+        margin: 0 1em 0 0;
+        padding: .5em 1em .5em 0;
+    }
+    
+    #toolbar > #submit:hover,
+    #toolbar > #submit.selected {
+        background-color: #fff;
+    }
+    
+    #toolbar img {
+        height: 1.5em;
+        margin: 0 .5em;
+        vertical-align: middle;
+    }
+    
+#newPost {
+    background: #fff;
+    border-bottom: 1px solid #e1e8ed;
+    display: none;
+    padding: 1em;
+    
+    -webkit-box-shadow: 0px 6px 5px -5px rgba(200, 200, 200, 1);
+    -moz-box-shadow:    0px 6px 5px -5px rgba(200, 200, 200, 1);
+    box-shadow:         0px 6px 5px -5px rgba(200, 200, 200, 1);
+}
+
+    #newPost .title {
+        font-size: .8em;
+        font-weight: bold;
+        line-height: 3em;
+    }
+    
+    #newPost > .menu {
+        margin: 1em 0 0 0;
+    }
+    
+        #newPost > .menu > * {
+            margin: 0 1em 0 0;
+        }
+    
+    #newPost #loading {
+        display: none;
+    }
+    
+    #newPost > .signin {
+        background-color: #fff;
+        padding: 1em;
+    }
+    
+#postsListLoading {
+    display: none;
+    margin: 2em 0 0 0;
+    text-align: center;
+}
+
+/* Default postList style */
+#postsList {
+    margin: 1em 0;
+}
+
+    /* Post default template (title+text) */
+    
+    #postsList .post {
+        background-color: #fff;
+        border: 1px solid #e1e8ed;
+        margin: 0 0 .3em 0;
+        position: relative;
+        transition: all .5s;
+    }
+    
+    #postsList .post:hover {
+        border: 1px solid rgba(0, 132, 180, .5);
+        
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 132, 180, .5);
+        -moz-box-shadow:    0px 0px 3px 0px rgba(0, 132, 180, .5);
+        box-shadow:         0px 0px 3px 0px rgba(0, 132, 180, .5);
+    }
+    
+        #postsList .post > .title {
+            font-weight: bold;
+            padding: 1em;
+        }
+        
+        #postsList .post > .text {
+            padding: 1em;
+        }
+        
+        #postsList .post > .postInfo {
+            background-color: #f5f8fa;
+            border-top: 1px solid #e1e8ed;
+            font-size: .7em;
+            overflow: hidden;
+            opacity: .6;
+            padding: 1em;
+            transition: all .5s;
+        }
+        
+        #postsList .post:hover > .postInfo {
+            opacity: 1;
+        }
+        
+            #postsList .post > .postInfo  > .username {
+                float: right;
+                line-height: 1.5em;
+                text-align: right;
+                width: 50%;
+            }
+            
+                #postsList .post > .postInfo  > .username > img {
+                    border-radius: 4px;
+                    float: right;
+                    height: 3em;
+                    margin: 0 0 0 1em;
+                    width: 3em;
+                }
+              
+            #postsList .post > .postInfo  > .comments {  
+            }
+            
+            #postsList .post > .postInfo > .vote {
+                margin: 0 0 .5em 0;
+            }
+            
+                #postsList .post > .postInfo > .vote > img {
+                    cursor: pointer;
+                    height: 1.5em;
+                    margin: 0 0 0 1em;
+                    vertical-align: middle;
+                    width: 1.5em;
+                }
+                
+                #postsList .post > .postInfo > .vote > img.upvote.selected {
+                    background-color: #fff;
+                    border: 1px solid #00E313;
+                    border-radius: 999em;
+                    padding: 2px;
+                }
+                
+                #postsList .post > .postInfo > .vote > img.downvote.selected {
+                    background-color: #fff;
+                    border: 1px solid #FF0000;
+                    border-radius: 999em;
+                    padding: 2px;
+                }
+
+    /* Post compact template */
+    
+    #postsList .postCompact {
+        background-color: #fff;
+        border: 1px solid #e1e8ed;
+        border-top: 1px solid transparent;
+        cursor: pointer;
+        overflow: hidden;
+        padding: .5em;
+        position: relative;
+        transition: all .5s;
+        z-index: auto;
+    }
+
+    #postsList .postCompact:first-child {
+        border: 1px solid #e1e8ed;
+    }
+    
+    #postsList .postCompact:hover {
+        border: 1px solid rgba(0, 132, 180, .5);
+        z-index: 10;
+        
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 132, 180, .5);
+        -moz-box-shadow:    0px 0px 3px 0px rgba(0, 132, 180, .5);
+        box-shadow:         0px 0px 3px 0px rgba(0, 132, 180, .5);
+    }
+    
+    #postsList .postCompact.selected {
+        border: 1px solid #e1e8ed;
+        margin: .3em 0;
+        
+        -webkit-animation: borderPulse 1s ease infinite;
+        -moz-animation: borderPulse 1s ease infinite;
+        -ms-animation: borderPulse 1s ease infinite;
+        animation: borderPulse 1s ease infinite;
+    }
+    
+    /* This is the animation used blink postCompact border while loading full post */
+    @-moz-keyframes borderPulse
+    {
+        0% { border-color: auto; }
+        50% { border-color: #00BFFF; }
+        100% { border-color: auto; }
+    }
+    
+    @-webkit-keyframes "borderPulse"
+    {
+        0% { border-color: auto; }
+        50% { border-color: #00BFFF; }
+        100% { border-color: auto; }
+    }
+    
+    @-ms-keyframes "borderPulse"
+    {
+        0% { border-color: auto; }
+        50% { border-color: #00BFFF; }
+        100% { border-color: auto; }
+    }
+    
+    @keyframes "borderPulse"
+    {
+        0% { border-color: auto; }
+        50% { border-color: #00BFFF; }
+        100% { border-color: auto; }
+    }
+    
+    #postsList .postCompact + .post {
+        margin-top: .3em;
+    }
+    
+        #postsList .postCompact > .comments {
+            float: right;
+            font-size: .7em;
+            line-height: 3em;
+            overflow: hidden;
+            padding: 0 0 0 1em;
+            text-align: right;
+            white-space: nowrap;
+        }
+    
+        #postsList .postCompact > .picture {
+            float: left;
+        }
+        
+            #postsList .postCompact > .picture > img {
+                border-radius: 4px;
+                height: 2em;
+                width: 2em;
+            }
+    
+        #postsList .postCompact > .title {
+            font-weight: bold;
+            line-height: 2em;
+            margin: 0 0 0 3em;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    
+/* This is a variant of #postsList, and is used for the list of user posts
+ * in his homepage
+*/
+#myPostsList {
+}
+
+    #myPostsList .post {
+        background-color: #fff;
+        border: 1px solid transparent;
+        border: 1px solid #e1e8ed;
+        margin: 0 0 .3em 0;
+        position: relative;
+        transition: all .5s;
+    }
+    
+    #myPostsList .post:hover {
+        border: 1px solid rgba(0, 132, 180, .5);
+        
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 132, 180, .5);
+        -moz-box-shadow:    0px 0px 3px 0px rgba(0, 132, 180, .5);
+        box-shadow:         0px 0px 3px 0px rgba(0, 132, 180, .5);
+    }
+    
+        #myPostsList .post > .title {
+            font-weight: bold;
+            padding: 1em;
+        }
+        
+        #myPostsList .post > .text {
+            padding: 1em;
+        }
+        
+        #myPostsList .post > .postInfo {
+            background-color: #f5f8fa;
+            border-top: 1px solid #e1e8ed;
+            font-size: .7em;
+            overflow: hidden;
+            opacity: .6;
+            padding: 1em;
+            transition: all .5s;
+        }
+        
+        #myPostsList .post:hover > .postInfo {
+            opacity: 1;
+        }
+        
+            #myPostsList .post > .postInfo  > .community {
+                float: right;
+                line-height: 1.5em;
+                text-align: right;
+                width: 50%;
+            }
+            
+                #myPostsList .post > .postInfo  > .community > img {
+                    border-radius: 4px;
+                    float: right;
+                    height: 3em;
+                    margin: 0 0 0 1em;
+                    width: 3em;
+                }
+              
+            #myPostsList .post > .postInfo  > .comments {  
+            }
+            
+            
+            
+            
+            
+            
+            
+            

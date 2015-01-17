@@ -1,0 +1,111 @@
+/* freepost
+ * http://freepo.st
+ *
+ * Copyright © 2014-2015 zPlus
+ * 
+ * This file is part of freepost.
+ * freepost is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * freepost is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+div.community {
+    background-color: #f5f8fa;
+    min-height: 100%;
+    overflow: hidden;
+    padding: 1em 5% 2em 5%;
+}
+    
+    div.community > .sidebar {
+        float: right;
+        height: 100%;
+        width: 30%;
+    }
+    
+    div.community > .content {
+        height: 100%;
+        margin: 0 35% 0 0;
+    }
+    
+        div.community > .content > .about {
+            background-color: #fff;
+            border: 1px solid #e1e8ed;
+            cursor: default;
+        }
+        
+            div.community > .content > .about > .text {
+                padding: 1em;
+            }
+            
+            div.community > .content > .about > .editor {
+                display: none;
+            }
+            
+            div.community > .content > .about > .menu {
+                background-color: #f5f8fa;
+                border-top: 1px solid #e1e8ed;
+                font-size: .8em;
+                font-weight: bold;
+                list-style: none;
+                margin: 0;
+                overflow: hidden;
+                padding: 0;
+            }
+            
+                div.community > .content > .about > .menu > li {
+                    cursor: pointer;
+                    float: left;
+                    padding: 1em;
+                }
+                
+                div.community > .content > .about > .menu > li.discard,
+                div.community > .content > .about > .menu > li.save,
+                div.community > .content > .about > .menu > li.loading {
+                    display: none;
+                }
+            
+        div.community > .content > .preferences {
+            background-color: #fff;
+            border: 1px solid #e1e8ed;
+            cursor: default;
+        }    
+            
+            div.community > .content > .preferences > .section {
+                overflow: hidden;
+            }
+            
+                div.community > .content > .preferences > .section > .title {
+                    float: left;
+                    font-weight: bold;
+                    width: 25%;
+                    padding: 1em;
+                    text-align: right;
+                }
+                
+                div.community > .content > .preferences > .section > .options {
+                    margin: 0 0 0 25%;
+                    padding: 1em;
+                    text-align: left;
+                }
+            
+            div.community > .content > .preferences > .section #pictureFileLoading {
+                display: none;
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            

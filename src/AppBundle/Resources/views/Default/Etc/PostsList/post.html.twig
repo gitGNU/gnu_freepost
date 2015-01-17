@@ -1,0 +1,73 @@
+{# freepost
+ # http://freepo.st
+ # 
+ # Copyright © 2014-2015 zPlus
+ # 
+ # This file is part of freepost.
+ # freepost is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU Affero General Public License as
+ # published by the Free Software Foundation, either version 3 of the
+ # License, or (at your option) any later version.
+ # 
+ # freepost is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ # GNU Affero General Public License for more details.
+ # 
+ # You should have received a copy of the GNU Affero General Public License
+ # along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+{# A single post in PostsList/list.html.twig #}
+
+{# The user vote for this post #}
+{% set userVote = aPost.votes|length == 0 ? 0 : aPost.votes[0].vote %}
+
+<div class="post" data-hashid="{{ aPost.hashId }}" data-uservote="{{ userVote }}">
+    
+    {# Post title #}
+    <div class="title">
+        {{ aPost.title|raw }}
+    </div>
+    
+    {# Post text #}
+    <div class="text">
+        {{ aPost.text|raw }}
+    </div>
+    
+    {# Info about this post #}
+    <div class="postInfo">
+        <div class="username">
+            <img class="picture" alt="" title="" src="{{ url('freepost_user_picture', {'userHashId': aPost.user.hashId}) }}" />
+            {{ aPost.user.username }}
+            <br />
+            {% set difference = date(aPost.created).diff(currentDate) %}
+            {% if difference.days > 0 %}
+                {{ difference.days }} days ago
+            {% else %}
+                {% if difference.h > 0 %}
+                    {{ difference.h }} hours ago
+                {% else %}
+                    {{ difference.i }} minutes ago
+                {% endif %}
+            {% endif %}
+        </div>
+        
+        <div class="vote">
+            <span class="points">{{ aPost.vote }}</span>
+            
+            {% image '@AppBundle/Resources/public/images/upvote-slim.png' %}
+                <img class="upvote {{ userVote == 1 ? 'selected' }}" src="{{ asset_url }}" alt="" title="Upvote" />
+            {% endimage %}
+            
+            {% image '@AppBundle/Resources/public/images/downvote-slim.png' %}
+                <img class="downvote {{ userVote == -1 ? 'selected' }}" src="{{ asset_url }}" alt="" title="Downvote" />
+            {% endimage %}
+        </div>
+        
+        <a class="none comments" target="_self" href="{{ path('freepost_post', {'communityName': community.name, 'postHashId': aPost.hashId, 'postTitle': aPost.title}) }}">
+            {{ aPost.commentsCount > 0 ? aPost.commentsCount }}
+            COMMENTS
+        </a>
+    </div>
+</div>

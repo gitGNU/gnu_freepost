@@ -1,0 +1,26 @@
+freepost_default:
+    resource: "@AppBundle/Resources/config/routing_default.yml"
+    prefix:   /
+
+freepost_comment:
+    resource: "@AppBundle/Resources/config/routing_comment.yml"
+    prefix:   /
+
+freepost_community:
+    resource: "@AppBundle/Resources/config/routing_community.yml"
+    prefix:   /
+
+freepost_post:
+    resource: "@AppBundle/Resources/config/routing_post.yml"
+    prefix:   /
+
+freepost_posts_list:
+    resource: "@AppBundle/Resources/config/routing_posts_list.yml"
+    prefix:   /
+
+freepost_user:
+    resource: "@AppBundle/Resources/config/routing_user.yml"
+    prefix:   /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

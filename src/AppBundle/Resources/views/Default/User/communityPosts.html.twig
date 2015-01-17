@@ -1,0 +1,49 @@
+{# freepost
+ # http://freepo.st
+ # 
+ # Copyright © 2014-2015 zPlus
+ # 
+ # This file is part of freepost.
+ # freepost is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU Affero General Public License as
+ # published by the Free Software Foundation, either version 3 of the
+ # License, or (at your option) any later version.
+ # 
+ # freepost is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ # GNU Affero General Public License for more details.
+ # 
+ # You should have received a copy of the GNU Affero General Public License
+ # along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+{# This is ajax-called to retrieve and show a list of posts for a given community #}
+
+<div class="header">
+    <img alt="" title="" src="{{ url('freepost_community_picture', {'communityHashId': community.hashId}) }}" />
+    
+    <span class="communityName">{{ community.name }}</span>
+    <br />
+    <ul class="menu">
+        <li>
+            <a class="posts" target="_self" href="{{ url('freepost_community', {'communityName': community.name}) }}">
+                Posts
+            </a>
+        </li>
+        <li>
+            <a class="about" target="_self" href="{{ url('freepost_community_about', {'communityName': community.name}) }}">
+                About
+            </a>
+        </li>
+        <li>
+            <a class="preferences" target="_self" href="{{ url('freepost_community_preferences', {'communityName': community.name}) }}">
+                Preferences
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="posts">
+    {% include 'AppBundle:Default:Etc/PostsList/page.html.twig' %}
+</div>

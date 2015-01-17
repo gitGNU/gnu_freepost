@@ -1,0 +1,99 @@
+# freepost
+# http://freepo.st
+# 
+# Copyright © 2014-2015 zPlus
+# 
+# This file is part of freepost.
+# freepost is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# 
+# freepost is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with freepost. If not, see <http://www.gnu.org/licenses/>.
+
+AppBundle\Entity\Comment:
+    type: entity
+    table: `comment`
+    repositoryClass: AppBundle\Entity\Repository\Comment
+    entityListeners:
+        AppBundle\Entity\Listener\Comment: ~
+    
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    fields:
+        hashId:
+            type: string
+            length: 32
+        created:
+            type: datetime
+        dateCreated:
+            type: date
+        read:
+            column: `read`
+            type: boolean
+        text:
+            type: text
+        vote:
+            type: integer
+
+    uniqueConstraints:
+        hashId:
+            columns: hashId
+
+    indexes:
+        created:
+            columns: created
+        dateCreated:
+            columns: dateCreated
+        isRead:
+            columns: read
+        vote:
+            columns: vote
+
+    oneToMany:
+        children:
+            targetEntity: Comment
+            mappedBy: parent
+        votes:
+            targetEntity: VoteComment
+            mappedBy: comment
+    
+    manyToOne:
+        parent:
+            targetEntity: Comment
+            inversedBy: children
+            joinColumn:
+                name: parentId
+                referencedColumnName: id
+
+        parentUser:
+            targetEntity: User
+            joinColumn:
+                name: parentUserId
+                referencedColumnName: id
+        
+        post:
+            targetEntity: Post
+            inversedBy: comments
+            joinColumn:
+                name: postId
+                referencedColumnName: id
+        user:
+            targetEntity: User
+            inversedBy: comments
+            joinColumn:
+                name: userId
+                referencedColumnName: id
+
+    lifecycleCallbacks: {  }

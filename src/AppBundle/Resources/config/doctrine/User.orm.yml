@@ -1,0 +1,129 @@
+# freepost
+# http://freepo.st
+# 
+# Copyright © 2014-2015 zPlus
+# 
+# This file is part of freepost.
+# freepost is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# 
+# freepost is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with freepost. If not, see <http://www.gnu.org/licenses/>.
+
+AppBundle\Entity\User:
+    type: entity
+    table: `user`
+    repositoryClass: AppBundle\Entity\Repository\User
+    
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    
+    fields:
+        hashId:
+            column: `hashId`
+            length: 32
+            nullable: false
+            type: string
+        email:
+            column: `email`
+            length: 255
+            nullable: true
+            type: string
+        emailToConfirm:
+            column: `emailToConfirm`
+            length: 255
+            nullable: true
+            type: string
+        emailToConfirmCode:
+            column: `emailToConfirmCode`
+            length: 255
+            nullable: true
+            type: string
+        feedFormat:
+            column: `feedFormat`
+            length: 32
+            nullable: false
+            type: string
+        isActive:
+            column: `isActive`
+            nullable: false
+            type: boolean
+        password:
+            column: `password`
+            length: 255
+            nullable: false
+            type: string
+        passwordResetCode:
+            column: `passwordResetCode`
+            length: 255
+            nullable: true
+            type: string
+        registered:
+            column: `registered`
+            nullable: false
+            type: datetime
+        salt:
+            column: `salt`
+            length: 255
+            nullable: false
+            type: string
+        username:
+            column: `username`
+            length: 255
+            nullable: false
+            type: string
+    
+    uniqueConstraints:
+        hashId:
+            columns: hashId
+        email:
+            columns: email
+        passwordResetCode:
+            columns: passwordResetCode
+        username:
+            columns: username
+    
+    oneToMany:
+        comments:
+            targetEntity: Comment
+            mappedBy: user
+        posts:
+            targetEntity: Post
+            mappedBy: user
+        commentVotes:
+            targetEntity: VoteComment
+            mappedBy: user
+        postVotes:
+            targetEntity: VotePost
+            mappedBy: user
+
+    manyToMany:
+        communities:
+            targetEntity: Community
+            inversedBy: users
+            joinTable:
+                name: users_communities
+                joinColumns:
+                    userId:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    communityId:
+                        referencedColumnName: id
+            
+    lifecycleCallbacks: {  }
+
+    
+    
+    
+    

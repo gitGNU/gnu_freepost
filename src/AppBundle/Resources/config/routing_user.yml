@@ -1,0 +1,133 @@
+# freepost
+# http://freepo.st
+# 
+# Copyright © 2014-2015 zPlus
+# 
+# This file is part of freepost.
+# freepost is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# 
+# freepost is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with freepost. If not, see <http://www.gnu.org/licenses/>.
+
+freepost_user:
+    path:     /user/{userName}
+    defaults: { _controller: AppBundle:User:communities }
+
+freepost_user_myposts:
+    path:     /user/{userName}/myPosts
+    defaults: { _controller: AppBundle:User:myPosts }
+
+freepost_user_replies:
+    path:     /user/{userName}/Replies
+    defaults: { _controller: AppBundle:User:replies }
+
+freepost_user_unread_replies:
+    path:     /unreadReplies
+    defaults: { _controller: AppBundle:User:unreadReplies }
+
+freepost_user_mycomments:
+    path:     /user/{userName}/Comments
+    defaults: { _controller: AppBundle:User:comments }
+
+freepost_user_preferences:
+    path:     /user/{userName}/preferences
+    defaults: { _controller: AppBundle:User:preferences }
+
+freepost_user_check_username:
+    path:     /checkUsername/{userName}
+    defaults: { _controller: AppBundle:User:checkUsername }
+
+freepost_user_follows_community:
+    path:     /userFollowsCommunity/{communityHashId}
+    defaults: { _controller: AppBundle:User:followsCommunity }
+
+freepost_user_picture:
+    path: /asset/user/{userHashId}/picture
+    defaults: { _controller: AppBundle:Asset:userPicture }
+
+freepost_user_read_community_posts:
+    path:     /userReadCommunityPosts/{communityHashId}
+    defaults: { _controller: AppBundle:User:readCommunityPosts }
+
+freepost_user_search_communities:
+    path:     /userSearchCommunities
+    defaults: { _controller: AppBundle:User:searchCommunities }
+
+freepost_user_signin:
+    path:     /signin
+    defaults: { _controller: AppBundle:User:signin }
+
+freepost_user_signin_check:
+    path: /signin_check
+
+freepost_user_signup:
+    path:     /signup
+    defaults: { _controller: AppBundle:User:signin }
+    methods: [GET]
+
+freepost_user_process_signup:
+    path:     /signup
+    defaults: { _controller: AppBundle:User:signup }
+    methods: [POST]
+
+freepost_user_signout:
+    path: /signout
+
+freepost_user_update_name:
+    pattern:  /userUpdateDisplayName
+    defaults: { _controller: AppBundle:User:updateDisplayName }
+    methods: [POST]
+
+# Store new email and send validation code
+freepost_user_validate_email:
+    pattern:  /userValidateEmail
+    defaults: { _controller: AppBundle:User:validateEmail }
+    methods: [POST]
+
+# Send this link to user email for validation
+freepost_user_validate_email_check:
+    pattern:  /updatemail/{code}
+    defaults: { _controller: AppBundle:User:validateEmailCode }
+    methods: [GET]
+
+# Send an email with a link to reset user password
+freepost_user_reset_password:
+    pattern:  /userResetPassword
+    defaults: { _controller: AppBundle:User:resetPassword }
+    methods: [POST]
+
+# This is called from the <form/> after user has inserted the verification code
+freepost_user_update_password:
+    pattern:  /userUpdatePassword
+    defaults: { _controller: AppBundle:User:updatePassword }
+    methods: [POST]
+
+freepost_user_delete_email:
+    pattern:  /userDeleteEmail
+    defaults: { _controller: AppBundle:User:deleteEmail }
+
+freepost_user_update_feedformat:
+    pattern:  /userUpdateFeedFormat/{feedFormat}
+    defaults: { _controller: AppBundle:User:updateFeedFormat }
+
+freepost_user_update_picture:
+    pattern:  /asset/user/updatePicture
+    defaults: { _controller: AppBundle:User:updatePicture }
+    methods: [POST]
+    
+    
+    
+    
+    
+    
+    
+    
+    

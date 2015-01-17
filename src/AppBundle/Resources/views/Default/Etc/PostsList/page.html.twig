@@ -1,0 +1,98 @@
+{# freepost
+ # http://freepo.st
+ # 
+ # Copyright © 2014-2015 zPlus
+ # 
+ # This file is part of freepost.
+ # freepost is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU Affero General Public License as
+ # published by the Free Software Foundation, either version 3 of the
+ # License, or (at your option) any later version.
+ # 
+ # freepost is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ # GNU Affero General Public License for more details.
+ # 
+ # You should have received a copy of the GNU Affero General Public License
+ # along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+{% block javascript %}
+    {% javascripts
+        '@AppBundle/Resources/public/js/postsList.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{# Toolbar above posts #}
+
+<ul id="toolbar" class="toolbar">
+    <li id="submit">
+        {% image '@AppBundle/Resources/public/images/pencil.png' %}
+            <img src="{{ asset_url }}" alt="" />
+        {% endimage %}
+        
+        Submit
+    </li>
+    <li class="new {{ postSorting == 'NEW' ? 'selected' }}">
+        New
+    </li>
+    <li class="hot {{ postSorting == 'HOT' ? 'selected' }}">
+        Hot
+    </li>
+</ul>
+
+<div id="newPost" class="newPost">
+    
+    <input type="hidden" name="communityHashId" value="{{ community.hashId }}" />
+    
+    {% if app.user %}
+        <div class="title">
+            Title
+        </div>
+        <div>
+            <input type="text" maxlength="255" name="title" />
+        </div>
+        
+        <div class="title">
+            Text
+        </div>
+        <div>
+            {# I need the ID to reference this CKEditor textarea from javascript #}
+            <textarea id="newPostEditor" name="newPostEditor" class="ckeditor" rows="1" cols="1"></textarea>
+        </div>
+        
+        <div class="menu">
+            <input class="buttonAction" type="submit" value="Post" />
+            
+            {% image '@AppBundle/Resources/public/images/loading-bar.gif' %}
+                <img id="loading" src="{{ asset_url }}" alt="" />
+            {% endimage %}
+            
+            <input class="buttonActionBackground cancel" type="button" value="Cancel" />
+        </div>
+    {% else %}
+        <div class="signin">
+            <a target="_blank" href="{{ url('freepost_user_signin') }}">
+                Please sign in to submit a new post...
+            </a>
+        </div>
+    {% endif %}
+    
+</div>
+
+{# List posts here #}
+
+<div id="postsListLoading" class="postsListLoading">
+    {% image '@AppBundle/Resources/public/images/loading-bar.gif' %}
+        <img id="loading" src="{{ asset_url }}" alt="" />
+    {% endimage %}
+</div>
+
+{% include 'AppBundle:Default:Etc/PostsList/list.html.twig' %}
+
+
+
+

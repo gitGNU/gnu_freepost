@@ -1,0 +1,100 @@
+/* freepost
+ * http://freepo.st
+ *
+ * Copyright © 2014-2015 zPlus
+ * 
+ * This file is part of freepost.
+ * freepost is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * freepost is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.communityMenu {
+    padding: 0;
+}
+
+    .communityMenu > .picture {
+        position: relative;
+        width: 100%;
+    }
+    
+    .communityMenu > .picture:before{
+        content: "";
+        display: block;
+        padding-top: 100%; 	/* initial ratio of 1:1*/
+    }
+    
+        .communityMenu > .picture > img {
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+        
+        .communityMenu > .picture > .content {
+            background-color: rgba(0, 0, 0, .2);
+            color: #fff;
+            font-size: 1.2em;
+            left: 0;
+            padding: .5em;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        
+        .communityMenu > .picture > .follow {
+            background-color: rgba(0, 0, 0, .8);
+            bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            padding: .5em 1em;
+            position: absolute;
+            right: 1em;
+            transition: all .5s;
+            visibility: hidden;
+            
+            -webkit-box-shadow: 0px 0px 3px 0px rgba(200, 200, 200, 1);
+            -moz-box-shadow:    0px 0px 3px 0px rgba(200, 200, 200, 1);
+            box-shadow:         0px 0px 3px 0px rgba(200, 200, 200, 1);
+        }
+        
+        .communityMenu > .picture > .follow:hover {
+            background-color: #fff;
+            color: #000;
+        }
+        
+    .communityMenu > .menu {
+    }
+    
+        .communityMenu > .menu > a {
+            color: #888;
+            cursor: pointer;
+            display: block;
+            padding: .5em;
+            transition: all .5s;
+        }
+        
+        .communityMenu > .menu > a:hover {
+            color: #000;
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        

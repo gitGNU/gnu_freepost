@@ -1,0 +1,99 @@
+{# freepost
+ # http://freepo.st
+ # 
+ # Copyright © 2014-2015 zPlus
+ # 
+ # This file is part of freepost.
+ # freepost is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU Affero General Public License as
+ # published by the Free Software Foundation, either version 3 of the
+ # License, or (at your option) any later version.
+ # 
+ # freepost is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ # GNU Affero General Public License for more details.
+ # 
+ # You should have received a copy of the GNU Affero General Public License
+ # along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+{% extends 'AppBundle:Default:Community/template.html.twig' %}
+
+{% block title %}
+    Preferences: {{ community.name }}
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    
+    {% javascripts
+        '@AppBundle/Resources/public/js/Community/preferences.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block content %}
+    
+    <div class="preferences">
+        
+        <input type="hidden" id="communityHashId" value="{{ community.hashId }}" />
+        
+        {# Community name #}
+        
+        <div class="section">
+            <div class="title">
+                Display name
+            </div>
+            <div class="options">
+                <input type="text" id="displayName" name="displayName" value="{{ community.name }}" />
+            </div>
+        </div>
+        
+        {# Community picture #}
+        
+        <div class="section">
+            <div class="title">
+                Picture
+            </div>
+            <div class="options">
+                <form action  = "{{ path('freepost_community_update_picture', {'communityHashId': community.hashId}) }}"
+                      enctype = "multipart/form-data"
+                      id      = "pictureForm"
+                      method  = "post"
+                      target  = "iframenull">
+                    <input type="file" id="pictureFile" name="pictureFile" />
+                </form>
+                
+                {% image '@AppBundle/Resources/public/images/loading-bar.gif' %}
+                    <img id="pictureFileLoading" src="{{ asset_url }}" alt="" />
+                {% endimage %}
+            </div>
+        </div>
+        
+        {# Sort posts by HOT/NEW #}
+        
+        {% if app.user and isFollowing %}
+            <div class="section">
+                <div class="title">
+                    Follow
+                </div>
+                <div class="options">
+                    <span id="stopFollowing" class="stopFollowing buttonActionBackground">
+                        Stop following this community
+                    </span>
+                </div>
+            </div>
+        {% endif %}
+        
+    </div>
+    
+    {# This iframe is used to redirect <form> ajax request #}
+    <iframe id="iframenull" name="iframenull" class="hidden"></iframe>
+    
+{% endblock %}
+
+
+
+

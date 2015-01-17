@@ -1,0 +1,308 @@
+/* freepost
+ * http://freepo.st
+ *
+ * Copyright © 2014-2015 zPlus
+ * 
+ * This file is part of freepost.
+ * freepost is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * freepost is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+div.user {
+    background-color: #f5f8fa;
+    min-height: 100%;
+    overflow: hidden;
+    padding: 1em 5% 2em 5%;
+}
+    
+    div.user > .sidebar {
+        float: right;
+        height: 100%;
+        width: 30%;
+    }
+        
+    div.user > .content {
+        height: 100%;
+        margin: 0 33.5% 0 0;
+    }
+    
+        /*** Page: communities ***/
+        
+        div.user > .content > .communities {
+            overflow: hidden;
+        }
+            
+            /* List of communities */
+            div.user > .content > .communities > .communities {
+                float: left;
+                width: 25%;
+            }
+                
+                div.user > .content > .communities > .communities > .title {
+                    border-bottom: 1px solid #D8DEE3;
+                    font-size: .8em;
+                    font-weight: bold;
+                    margin: 1em 0;
+                    padding: .5em 0;
+                }
+                
+                div.user > .content > .communities > .communities .allCommunities,
+                div.user > .content > .communities > .communities .community {
+                    color: #888;
+                    cursor: pointer;
+                    padding: .5em;
+                    transition: all .5s;
+                    word-wrap: break-word;
+                }
+                
+                div.user > .content > .communities > .communities .selected,
+                div.user > .content > .communities > .communities .allCommunities:hover,
+                div.user > .content > .communities > .communities .community:hover {
+                    color: #000;
+                    background-color: #fff;
+                    border-right: 2px solid #e1e8ed;
+                }
+                
+                    div.user > .content > .communities > .communities .community > img,
+                    div.user > .content > .communities > .communities .allCommunities > img {
+                        border-radius: 4px;
+                        height: 1.5em;
+                        margin: 0 .5em 0 0;
+                        vertical-align: middle;
+                    }
+            
+            /* List posts for a community */
+            div.user > .content > .communities > .list {
+                margin: 0 0 0 30%;
+                
+                /* This 5px right padding is to leave some space for posts
+                 * "box-shadow". Without this, the shadow is cut off by the margin.
+                 * --> Why? Dunno...
+                 */
+                padding: 0 5px 0 0;
+            }
+            
+                div.user > .content > .communities > .list > .header {
+                    overflow: hidden;
+                    margin: 0 0 1em 0;
+                }
+                    
+                    div.user > .content > .communities > .list > .header > .communityName {
+                        font-weight: bold;
+                        line-height: 1em;
+                    }
+                    
+                    div.user > .content > .communities > .list > .header > img {
+                        border-radius: 4px;
+                        float: left;
+                        height: 3em;
+                        margin: 0 1em 0 0;
+                        vertical-align: top;
+                        width: 3em;
+                    }
+                    
+                    div.user > .content > .communities > .list > .header > .menu {
+                        display: inline-block;
+                        list-style: none;
+                        margin: 0;
+                        overflow: hidden;
+                        padding: 0;
+                    }
+                    
+                        div.user > .content > .communities > .list > .header > .menu > li {
+                            float: left;
+                            line-height: 2em;
+                            margin: 0 1em 0 0;
+                        }
+                
+                /* List communities here. Loaded when clicked "All communities" button */
+                div.user > .content > .communities > .list > .searchCommunities {
+                }
+                    
+                    div.user > .content > .communities > .list > .searchCommunities > .title {
+                        border-bottom: 1px solid #D8DEE3;
+                        font-size: .8em;
+                        font-weight: bold;
+                        margin: 1em 0;
+                        padding: .5em 0;
+                    }
+                    
+                    div.user > .content > .communities > .list > .searchCommunities > .title:first-child {
+                        margin-top: 0;
+                    }
+                    
+                    div.user > .content > .communities > .list > .searchCommunities > .new {
+                        margin: 0 0 2em 0;
+                    }
+                    
+                    div.user > .content > .communities > .list > .searchCommunities > .community {
+                        border-radius: 5px;
+                        display: block;
+                        padding: .5em;
+                        transition: all .5s;
+                    }
+                    
+                    div.user > .content > .communities > .list > .searchCommunities > .community:hover {
+                        background-color: #fff;
+                    }
+                    
+                        div.user > .content > .communities > .list > .searchCommunities > .community > img {
+                            border-radius: 4px;
+                            height: 2em;
+                            margin: 0 1em 0 0;
+                            width: 2em;
+                            vertical-align: middle;
+                        }
+                
+        /* Page: comments */
+        
+        div.user > .content > .comments {
+            overflow: hidden;
+        }
+        
+            div.user > .content > .comments > .menu {
+                float: left;
+                width: 25%;
+            }
+            
+                div.user > .content > .comments > .menu > a {
+                        color: #888;
+                        cursor: pointer;
+                        padding: .5em;
+                        transition: all .5s;
+                        width: 100%;
+                    }
+                    
+                div.user > .content > .comments > .menu > a.selected,
+                div.user > .content > .comments > .menu > a:hover {
+                    color: #000;
+                    background-color: #fff;
+                    border-right: 2px solid #e1e8ed;
+                }
+            
+            div.user > .content > .comments > .list {
+                margin: 0 0 0 30%;
+            }
+            
+                div.user > .content > .comments > .list > .comment {
+                    background-color: #fff;
+                    border: 1px solid transparent;
+                    border: 1px solid #e1e8ed;
+                    margin: 0 0 .3em 0;
+                    position: relative;
+                    transition: all .5s;
+                }
+                
+                div.user > .content > .comments > .list > .comment:hover {
+                    border: 1px solid rgba(0, 132, 180, .5);
+                    
+                    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 132, 180, .5);
+                    -moz-box-shadow:    0px 0px 3px 0px rgba(0, 132, 180, .5);
+                    box-shadow:         0px 0px 3px 0px rgba(0, 132, 180, .5);
+                }
+                
+                    div.user > .content > .comments > .list > .comment > .text {
+                        padding: 1em;
+                    }
+                    
+                    div.user > .content > .comments > .list > .comment > .commentInfo {
+                        background-color: #f5f8fa;
+                        border-top: 1px solid #e1e8ed;
+                        overflow: hidden;
+                        opacity: .6;
+                        padding: 1em;
+                        transition: all .5s;
+                    }
+                    
+                    div.user > .content > .comments > .list > .comment:hover > .commentInfo {
+                        opacity: 1;
+                    }
+                    
+                        div.user > .content > .comments > .list > .comment > .commentInfo  > .username,
+                        div.user > .content > .comments > .list > .comment > .commentInfo  > .community {
+                            float: right;
+                            font-size: .7em;
+                            line-height: 1.5em;
+                            text-align: right;
+                            width: 30%;
+                        }
+                        
+                            div.user > .content > .comments > .list > .comment > .commentInfo  > .username > img,
+                            div.user > .content > .comments > .list > .comment > .commentInfo  > .community > img {
+                                border-radius: 4px;
+                                float: right;
+                                height: 3em;
+                                margin: 0 0 0 1em;
+                                width: 3em;
+                            }
+
+                        div.user > .content > .comments > .list > .comment > .commentInfo  > .post {
+                            
+                            font-style: italic;
+                            max-width: 65%;
+                        }
+                        
+        /*** Page: preferences ***/
+        div.user > .content > .preferences {
+            background-color: #fff;
+            border: 1px solid #e1e8ed;
+            cursor: default;
+        }    
+            
+            div.user > .content > .preferences > .section {
+                overflow: hidden;
+            }
+            
+                div.user > .content > .preferences > .section > .title {
+                    float: left;
+                    font-weight: bold;
+                    width: 25%;
+                    padding: 1em;
+                    text-align: right;
+                }
+                
+                div.user > .content > .preferences > .section > .options {
+                    margin: 0 0 0 25%;
+                    padding: 1em;
+                    text-align: left;
+                }
+            
+            div.user > .content > .preferences > .section #email {
+                margin: .5em 0 0 0;
+            }
+            
+            div.user > .content > .preferences > .section #validateEmail,
+            div.user > .content > .preferences > .section #deleteEmail {
+                display: none;
+                margin: .5em 0 0 0;
+            }
+            
+            div.user > .content > .preferences > .section #pictureFileLoading {
+                display: none;
+            }
+            
+            div.user > .content > .preferences > .section #deletePictureFile {
+                display: block;
+                margin: .5em 0 0 0;
+            }
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            

@@ -1,0 +1,123 @@
+/* freepost
+ * http://freepo.st
+ *
+ * Copyright © 2014-2015 zPlus
+ * 
+ * This file is part of freepost.
+ * freepost is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * freepost is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.userMenu {
+    padding: 0;
+}
+
+    .userMenu > .picture {
+        position: relative;
+        width: 100%;
+    }
+    
+    .userMenu > .picture:before{
+        content: "";
+        display: block;
+        padding-top: 100%; 	/* initial ratio of 1:1*/
+    }
+    
+        .userMenu > .picture > img {
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%
+        }
+        
+        .userMenu > .picture > .content {
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+            
+            .userMenu > .picture > .content > .username {
+                background-color: rgba(0, 0, 0, .2);
+                color: #fff;
+                font-size: 1.2em;
+                padding: .5em;
+            }
+            
+            .userMenu > .picture > .content > .newReplies {
+                background-color: rgba(255, 175, 50, .8);
+                color: #fff;
+                cursor: pointer;
+                display: none;
+                font-weight: bold;
+                padding: .5em;
+                transition: all .5s;
+                width: 100%;
+                
+                -webkit-box-shadow: 0px 0px 5px 0px rgba(255, 255, 58, 1);
+                -moz-box-shadow:    0px 0px 5px 0px rgba(255, 255, 58, 1);
+                box-shadow:         0px 0px 5px 0px rgba(255, 255, 58, 1);
+            }
+            
+            .userMenu > .picture > .content > .newReplies:hover {
+                background-color: rgba(255, 175, 50);
+            }
+    
+    .userMenu > .menu {
+    }
+    
+        .userMenu > .menu > a {
+            border-left: 4px solid transparent;
+            color: #888;
+            cursor: pointer;
+            display: block;
+            padding: .5em;
+            transition: all .5s;
+        }
+        
+        .userMenu > .menu > a:hover,
+        .userMenu > .menu > a.selected {
+            color: #000;
+        }
+
+            .userMenu > .menu > a.signout {
+                background-color: #f5f8fa;
+                border-top: 1px solid #e1e8ed;
+            }
+            
+            .userMenu > .menu > a.communities:hover,
+            .userMenu > .menu > a.communities.selected {
+                border-left-color: rgb(255, 175, 50);
+            }
+            
+            .userMenu > .menu > a.my:hover,
+            .userMenu > .menu > a.my.selected {
+                border-left-color: #76F054;
+            }
+            
+            .userMenu > .menu > a.preferences:hover,
+            .userMenu > .menu > a.preferences.selected {
+                border-left-color: #4d90f0; /* #A3DAFF */
+            }
+            
+            .userMenu > .menu > a.signout:hover,
+            .userMenu > .menu > a.signout.selected {
+                border-left-color: #f00;
+            }
+        
+        
+        
+        
+        
+        
+        

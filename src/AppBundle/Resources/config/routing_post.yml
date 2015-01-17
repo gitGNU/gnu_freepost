@@ -1,0 +1,40 @@
+# freepost
+# http://freepo.st
+# 
+# Copyright © 2014-2015 zPlus
+# 
+# This file is part of freepost.
+# freepost is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# 
+# freepost is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with freepost. If not, see <http://www.gnu.org/licenses/>.
+
+freepost_post:
+    path:     /community/{communityName}/post/{postHashId}/{postTitle}
+    defaults: { _controller: AppBundle:Post:post, postTitle: "" }
+
+freepost_post_comment:
+    path:     /community/{communityName}/post/{postHashId}/{postTitle}/comment/{commentHashId}
+    defaults: { _controller: AppBundle:Post:post }
+
+freepost_post_edit:
+    path:     /editPost/{postHashId}
+    defaults: { _controller: AppBundle:Post:edit }
+    methods: [POST]
+
+freepost_post_upvote:
+    path:     /upvotePost/{postHashId}
+    defaults: { _controller: AppBundle:Post:upvote }
+
+freepost_post_downvote:
+    path:     /downvotePost/{postHashId}
+    defaults: { _controller: AppBundle:Post:downvote }
+

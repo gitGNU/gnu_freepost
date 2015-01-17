@@ -1,0 +1,107 @@
+{# freepost
+ # http://freepo.st
+ # 
+ # Copyright © 2014-2015 zPlus
+ # 
+ # This file is part of freepost.
+ # freepost is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU Affero General Public License as
+ # published by the Free Software Foundation, either version 3 of the
+ # License, or (at your option) any later version.
+ # 
+ # freepost is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ # GNU Affero General Public License for more details.
+ # 
+ # You should have received a copy of the GNU Affero General Public License
+ # along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+{% extends 'AppBundle:Default:Home/page.html.twig' %}
+
+{% block content %}
+    <div class="signin">
+    
+        <ul class="menu">
+            <li class="signin selected">Sign in</li>
+            <li class="signup">New user</li>
+            <li class="resetPassword">Reset password</li>
+        </ul>
+        
+        <div class="form">
+        
+            {# Signin form #}
+            
+            <div class="signin selected">
+                <form action="{{ url('freepost_user_signin_check') }}" method="post" target="_self" enctype="application/x-www-form-urlencoded">
+                    <div class="title">Your name</div>
+                    <div class="">
+                        <input type="text" name="username" value="" />
+                    </div>
+                    <div class="title">Password</div>
+                    <div class="">
+                        <input type="password" name="password" value="" />
+                    </div>
+                    <div class="buttons">
+                        <input type="submit" class="buttonAction" value="Sign in" />
+                        <input type="checkbox" id="rememberme" name="rememberme" checked /> Remember me
+                    </div>
+                </form>
+            </div>
+            
+            {# Signup form #}
+            
+            <div class="signup">
+                <form action="{{ url('freepost_user_process_signup') }}" method="post" target="_self" enctype="application/x-www-form-urlencoded">
+                    <div class="title">Choose a screen name</div>
+                    <div class="">
+                        <input type="text" pattern="[^\\\/]++" name="username" value="" />
+                    </div>
+                    <div class="tip">
+                        Five characters or more
+                    </div>
+                    <div class="tip">
+                        You cannot use these symbols as part of your name: \ /
+                    </div>
+                    <div class="validUsername">
+                        This username is available!
+                    </div>
+                    <div class="badUsername">
+                        This username is already taken!
+                    </div>
+                    
+                    <div class="title">Choose a password</div>
+                    <div class="">
+                        <input type="password" name="password" value="" />
+                    </div>
+                    <div class="tip">
+                        Five characters or more
+                    </div>
+                    <div class="buttons">
+                        <input type="submit" class="buttonAction" value="Create new user" />
+                    </div>
+                </form>
+            </div>
+            
+            {# Reset password form #}
+            
+            <div class="resetPassword">
+                <form action="{{ url('freepost_user_reset_password') }}" method="post" target="_self" enctype="application/x-www-form-urlencoded">
+                    <div class="title">Your email</div>
+                    <div class="tip">
+                        You should have added an email address in your account preferences.
+                    </div>
+                    <div class="">
+                        <input type="text" name="email" value="" />
+                    </div>
+                    <div class="buttons">
+                        <input type="submit" class="buttonAction" value="Change password" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,325 @@
+/* freepost
+ * http://freepo.st
+ *
+ * Copyright © 2014-2015 zPlus
+ * 
+ * This file is part of freepost.
+ * freepost is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * freepost is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+div.post {
+    background-color: #f5f8fa;
+    min-height: 100%;
+    overflow: hidden;
+    padding: 1em 5% 2em 5%;
+}
+    
+    div.post > .sidebar {
+        float: right;
+        height: 100%;
+        width: 30%;
+    }
+    
+    div.post > .content {
+        height: 100%;
+        margin: 0 35% 0 0;
+    }
+    
+        div.post > .content > .title {
+            font-size: 1.5em;
+        }
+        
+        div.post > .content > .text {
+            background-color: #fff;
+            border: 1px solid #e1e8ed;
+            border-bottom-width: 0px;
+            margin: 1em 0 0 0;
+            padding: 1em;
+            word-wrap: break-word;
+        }
+        
+        div.post > .content > .editPost {
+            display: none;
+            margin: 1em 0 0 0;
+        }
+        
+        div.post > .content > .menu {
+            background-color: rgba(0, 0, 0, .6);
+            border: 1px solid #e1e8ed;
+            border-top-width: 0px;
+            color: #fff;
+            list-style: none;
+            margin: 0;
+            overflow: hidden;
+            padding: .5em 1em;
+        }
+            
+            div.post > .content > .menu > li {
+                float: left;
+                font-size: .8em;
+                line-height: 3em;
+                margin: 0 1em 0 0;
+            }
+        
+            div.post > .content > .menu > li.hidden {
+                display: none;
+            }
+            
+            div.post > .content > .menu > li.pointer {
+                cursor: pointer;
+            }
+            
+            div.post > .content > .menu  > .username {
+                float: right;
+                font-size: .7em;
+                line-height: 1.5em;
+                text-align: right;
+                width: 50%;
+            }
+            
+                div.post > .content > .menu  > .username > img {
+                    float: right;
+                    height: 3em;
+                    margin: 0 0 0 1em;
+                    width: 3em;
+                }
+
+        div.post > .content > .toolbar {
+            font-size: .8em;
+            list-style: none;
+            margin: 2em 0 0 0;
+            overflow: hidden;
+            padding: 0;
+            width: 100%;
+        }
+        
+            div.post > .content > .toolbar > li {
+                border-bottom: 1px solid transparent;
+                cursor: pointer;
+                display: inline-block;
+                float: right;
+                margin: 0 0 0 1em;
+                padding: .5em 0 .2em 0;
+                transition: all .5s;
+            }
+            
+            div.post > .content > .toolbar > li:hover {
+                border-bottom-color: #aaa;
+            }
+            
+            div.post > .content > .toolbar > li.selected {
+                border-bottom-color: #888;
+            }
+            
+            /* "Submit" button */
+            div.post > .content > .toolbar > #submit {
+                border: 0;
+                float: left;
+                margin: 0 1em 0 0;
+                padding: .5em 1em .5em 0;
+            }
+            
+            div.post > .content > .toolbar > #submit:hover,
+            div.post > .content > .toolbar > #submit.selected {
+                background-color: #fff;
+            }
+            
+            div.post > .content > .toolbar > .commentsCount {
+                color: #666;
+                float: right;
+            }
+            
+            div.post > .content > .toolbar img {
+                height: 1.5em;
+                margin: 0 .5em;
+                vertical-align: middle;
+            }
+            
+        div.post > .content > .newComment {
+            background-color: #fff;
+            display: none;
+            padding: 1em;
+            
+            -webkit-box-shadow: 0px 6px 5px -5px rgba(200, 200, 200, 1);
+            -moz-box-shadow:    0px 6px 5px -5px rgba(200, 200, 200, 1);
+            box-shadow:         0px 6px 5px -5px rgba(200, 200, 200, 1);
+        }
+        
+            div.post > .content > .newComment > .menu {
+                margin: 1em 0 0 0;
+            }
+            
+                div.post > .content > .newComment > .menu > * {
+                    margin: 0 1em 0 0;
+                }
+            
+            div.post > .content > .newComment #loading {
+                display: none;
+            }
+            
+            div.post > .content > .newComment > .signin {
+                background-color: #fff;
+                padding: 1em;
+            }
+            
+        /* Format the list of comments for a post */
+
+        div.post > .content > .comments {
+            margin: 2em 0 0 0;
+        }
+
+            div.post > .content > .comments > .comment {
+                margin: 0 0 .2em 0;
+                overflow: hidden;
+                word-wrap: break-word;
+            }
+            
+                div.post > .content > .comments > .comment > .userPicture {
+                    float: left;
+                }
+                
+                    div.post > .content > .comments > .comment > .userPicture > img {
+                        width: 40px;
+                        height: 40px;
+                        margin: 2px;
+                        /*
+                        border-radius: 4px;
+                        
+                        -webkit-box-shadow: 0px 0px 2px 0px rgba(100, 100, 100, 1);
+                        -moz-box-shadow:    0px 0px 2px 0px rgba(100, 100, 100, 1);
+                        box-shadow:         0px 0px 2px 0px rgba(100, 100, 100, 1);
+                        */
+                    }
+                
+                div.post > .content > .comments > .comment > .content {
+                    margin: 0 0 0 60px;
+                }
+                
+                    div.post > .content > .comments > .comment > .content > .userName {
+                        display: inline-block;
+                        font-size: .7em;
+                        font-weight: bold;
+                        margin: 0 0 1em 0;
+                        color: #666;
+                    }
+                    
+                    div.post > .content > .comments > .comment > .content > .op {
+                        background-color: rgb(255, 175, 50);
+                        border-radius: 4px;
+                        color: #fff;
+                        font-weight: bold;
+                        padding: .1em .5em;
+                    }
+                    
+                    div.post > .content > .comments > .comment > .content > .datetime {
+                        color: #888;
+                        display: inline-block;
+                        font-size: .7em;
+                        margin: 0 0 0 1em;
+                        opacity: .7;
+                        transition: all .5s;
+                    }
+                    
+                    div.post > .content > .comments > .comment:hover > .content > .datetime {
+                        opacity: 1;
+                    }
+                    
+                    div.post > .content > .comments > .comment > .content > .menu {
+                        font-size: .8em;
+                        margin: 1em 0 0 0;
+                        opacity: .4;
+                        text-align: right;
+                        transition: all .5s;
+                    }
+                    
+                    div.post > .content > .comments > .comment:hover > .content > .menu {
+                        opacity: 1;
+                    }
+
+                        div.post > .content > .comments > .comment > .content > .menu > .upvote,
+                        div.post > .content > .comments > .comment > .content > .menu > .downvote {
+                            cursor: pointer;
+                            height: 1.2em;
+                            vertical-align: middle;
+                            width: 1.2em;
+                        }
+                        
+                        div.post > .content > .comments > .comment > .content > .menu > .upvote.selected,
+                        div.post > .content > .comments > .comment > .content > .menu > .downvote.selected {
+                            background-color: #fff;
+                            border-radius: 999em;
+                            height: 1.2em;
+                            padding: 2px;
+                            width: 1.2em;
+                        }
+                        
+                        div.post > .content > .comments > .comment > .content > .menu > .upvote.selected {
+                            border: 1px solid #00E313;
+                        }
+                        
+                        div.post > .content > .comments > .comment > .content > .menu > .downvote.selected {
+                            border: 1px solid #FF0000;
+                        }
+                        
+                        div.post > .content > .comments > .comment > .content > .menu > .points {
+                            margin: 0 1em;
+                        }
+                        
+                        div.post > .content > .comments > .comment > .content > .menu > ul {
+                            display: inline-block;
+                            list-style: none;
+                            margin: 0;
+                            overflow: hidden;
+                            padding: 0;
+                        }
+                        
+                            div.post > .content > .comments > .comment > .content > .menu > ul > li {
+                                cursor: pointer;
+                                display: inline-block;
+                                float: left;
+                                height: 1.2em;
+                                margin: 0 1em;
+                                white-space: nowrap;
+                                word-wrap: nowrap;
+                            }
+                    
+                            div.post > .content > .comments > .comment > .content > .menu > ul > li.hidden {
+                                display: none;
+                            }
+                            
+                            /* The icon with the dots used to show more options */
+                            div.post > .content > .comments > .comment > .content > .menu > ul > .more {
+                                cursor: pointer;
+                                height: 1em;
+                                margin: 0 0 0 1em;
+                                vertical-align: middle;
+                            }
+                            
+                            div.post > .content > .comments > .comment > .content > .menu > ul > .moreButtons {
+                                margin: 0;
+                            }
+                            
+                    div.post > .content > .comments > .comment > .content > .replyTextarea {
+                        margin: .5em 0 0 0;
+                    }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            

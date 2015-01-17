@@ -1,0 +1,194 @@
+{# freepost
+ # http://freepo.st
+ # 
+ # Copyright © 2014-2015 zPlus
+ # 
+ # This file is part of freepost.
+ # freepost is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU Affero General Public License as
+ # published by the Free Software Foundation, either version 3 of the
+ # License, or (at your option) any later version.
+ # 
+ # freepost is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ # GNU Affero General Public License for more details.
+ # 
+ # You should have received a copy of the GNU Affero General Public License
+ # along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+{% extends 'AppBundle:Default:index.html.twig' %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    
+    {% stylesheets
+        '@AppBundle/Resources/public/css/communityMenu.css'
+        '@AppBundle/Resources/public/css/post.css'
+        '@AppBundle/Resources/public/css/userToolbar.css'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+        
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    
+    {% javascripts
+        '@AppBundle/Resources/public/js/Post/post.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% set currentDate = date() %}
+
+{% block body %}
+    <div class="post">
+        
+        {# Right column #}
+        
+        <div class="sidebar">
+            {# User toolbar #}
+            {% if app.user %}
+                {% include 'AppBundle:Default:userToolbar.html.twig' %}
+            {% endif %}
+            
+            {# Community menu #}
+            {% include 'AppBundle:Default:Community/menu.html.twig' with {'community': post.community} %}
+        </div>
+        
+        {# Page content #}
+        
+        <div class="content">
+            
+            {# The title of this post #}
+            
+            <div class="title">
+                {{ post.title }}
+            </div>
+            
+            {# The text of this post #}
+            
+            <div class="text">
+                {{ post.text|raw }}
+            </div>
+            
+            {# Editor to edit post #}
+            {% if app.user and post.user == app.user %}
+                <div class="editPost">
+                    {# I need the ID to reference this CKEditor textarea from javascript #}
+                    <textarea id="editPostEditor" name="editPostEditor" class="ckeditor" rows="1" cols="1"></textarea>
+                </div>
+            {% endif %}
+            
+            {# Info about this comment #}
+            
+            <ul class="menu">
+                <li class="username">
+                    <img class="picture" alt="" title="" src="{{ url('freepost_user_picture', {'userHashId': post.user.hashId}) }}" />
+                    {{ post.user.username }}
+                    <br />
+                    {% set difference = date(post.created).diff(currentDate) %}
+                    {% if difference.days > 0 %}
+                        {{ difference.days }} days ago
+                    {% else %}
+                        {% if difference.h > 0 %}
+                            {{ difference.h }} hours ago
+                        {% else %}
+                            {{ difference.i }} minutes ago
+                        {% endif %}
+                    {% endif %}
+                </li>
+                
+                {# Show the number of comments for this post #}
+                <li class="commentsCount">
+                    {% if post.commentsCount == 0 %}
+                        No comments
+                    {% else %}
+                        {{ post.commentsCount }} comments
+                    {% endif %}
+                </li>
+                
+                {% if app.user and post.user == app.user %}
+                    <li class="edit pointer">
+                        Edit
+                    </li>
+                    
+                    <li class="cancel pointer hidden">
+                        Cancel
+                    </li>
+                    
+                    <li class="save pointer hidden">
+                        Save
+                    </li>
+                    
+                    <li class="loading hidden">
+                        {% image '@AppBundle/Resources/public/images/loading-bar.gif' %}
+                            <img id="loading" src="{{ asset_url }}" alt="" />
+                        {% endimage %}
+                    </li>
+                {% endif %}
+            </ul>
+            
+            {# Toolbar above comments #}
+            <ul id="toolbar" class="toolbar">
+            
+                {# "New comment" button #}
+                
+                <li id="submit">
+                    {% image '@AppBundle/Resources/public/images/pencil.png' %}
+                        <img src="{{ asset_url }}" alt="" />
+                    {% endimage %}
+                    
+                    New comment
+                </li>
+            </ul>
+            
+            <div id="newComment" class="newComment">
+                
+                {% if app.user %}
+                    <input type="hidden" name="postHashId" value="{{ post.hashId }}" />
+                    
+                    {# I need the ID to reference this CKEditor textarea from javascript #}
+                    <textarea id="newCommentEditor" name="newCommentEditor" class="ckeditor" rows="1" cols="1"></textarea>
+                    
+                    <div class="menu">
+                        <input class="buttonAction" type="submit" value="Write comment" />
+                        
+                        {% image '@AppBundle/Resources/public/images/loading-bar.gif' %}
+                            <img id="loading" src="{{ asset_url }}" alt="" />
+                        {% endimage %}
+                        
+                        <input class="buttonActionBackground cancel" type="button" value="Cancel" />
+                    </div>
+                {% else %}
+                    <div class="signin">
+                        <a target="_blank" href="{{ url('freepost_user_signin') }}">
+                            Please sign in to post a new comment...
+                        </a>
+                    </div>
+                {% endif %}
+                
+            </div>
+            
+            {# List comments here #}
+            <div id="comments" class="comments">
+                {% include 'AppBundle:Default:Post/comment.html.twig' with {'op': post.user, 'parent': null, 'depth': 0} %}
+            </div>
+            
+        </div>
+        
+    </div>
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,67 @@
+security:
+    encoders:
+        # Symfony\Component\Security\Core\User\User: plaintext
+        AppBundle\Entity\User:
+            algorithm: sha512
+            encode-as-base64: false
+            iterations: 1
+    
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        main:
+            # entity:
+            #    class: AppBundle\Entity\User
+            #    property: username
+            
+            entity: { class: AppBundle:User }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        
+        # login:
+        #    pattern:  ^/demo/secured/login$
+        #    security: false
+        
+        secured_area:
+            pattern: ^/
+            anonymous: ~
+            form_login:
+                login_path: freepost_user_signin
+                check_path: freepost_user_signin_check
+                username_parameter: username
+                password_parameter: password
+                post_only: true
+                remember_me: true
+            remember_me:
+                key: "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                name: freepost_rememberme
+                # domain: example.com
+                # secure: false
+                # httponly: true
+                remember_me_parameter: rememberme
+                always_remember_me: false # Symfony2 will assume that parameter is present and set to true
+                path: /
+                domain: ~ # Defaults to the current domain from $_SERVER
+            logout:
+                path:   freepost_user_signout
+                target: freepost_homepage
+                # This hack is to solve a bug when hitting "logout" link
+                #   SessionHandler::write(): Parent session handler is not open...
+                # Apparently to solve this I need to upgrade to PHPv5.4.11+ (but
+                # can't ATM because I'm on shared hosting)
+                invalidate_session: false
+            # http_basic:
+            #    realm: "Secured Demo Area"
+        
+        default:
+            anonymous: ~
+
+    access_control:
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

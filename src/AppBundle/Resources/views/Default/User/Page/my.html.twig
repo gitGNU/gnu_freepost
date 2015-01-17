@@ -1,0 +1,80 @@
+{# freepost
+ # http://freepo.st
+ # 
+ # Copyright © 2014-2015 zPlus
+ # 
+ # This file is part of freepost.
+ # freepost is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU Affero General Public License as
+ # published by the Free Software Foundation, either version 3 of the
+ # License, or (at your option) any later version.
+ # 
+ # freepost is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ # GNU Affero General Public License for more details.
+ # 
+ # You should have received a copy of the GNU Affero General Public License
+ # along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+{# This template is never rendered directly, but it's extended by
+   
+   'AppBundle:Default:User/Page/mycomments.html.twig'
+   'AppBundle:Default:User/Page/myposts.html.twig'
+   'AppBundle:Default:User/Page/myreplies.html.twig'
+#}
+
+{% extends 'AppBundle:Default:User/template.html.twig' %}
+
+{% block title %}
+    My posts and comments: {{ user.username }}
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    
+    {% javascripts
+        '@AppBundle/Resources/public/js/User/my.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block content %}
+    
+    <div class="comments">
+        
+        <div class="menu">
+            <a class="none {{ page == 'MYPOSTS' ? 'selected' }}" target="_self" href="{{ path('freepost_user_myposts', {'userName': user.username}) }}">
+                My posts
+            </a>
+            <a class="none {{ page == 'MYCOMMENTS' ? 'selected' }}" target="_self" href="{{ path('freepost_user_mycomments', {'userName': user.username}) }}">
+                My comments
+            </a>
+            <a class="none {{ page == 'REPLIES' ? 'selected' }}" target="_self" href="{{ path('freepost_user_replies', {'userName': user.username}) }}">
+                Replies
+            </a>
+        </div>
+        
+        <div class="list">
+            {% block list %}{% endblock %}
+        </div>
+        
+    </div>
+    
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

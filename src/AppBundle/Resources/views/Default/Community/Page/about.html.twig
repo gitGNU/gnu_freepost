@@ -1,0 +1,76 @@
+{# freepost
+ # http://freepo.st
+ # 
+ # Copyright © 2014-2015 zPlus
+ # 
+ # This file is part of freepost.
+ # freepost is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU Affero General Public License as
+ # published by the Free Software Foundation, either version 3 of the
+ # License, or (at your option) any later version.
+ # 
+ # freepost is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ # GNU Affero General Public License for more details.
+ # 
+ # You should have received a copy of the GNU Affero General Public License
+ # along with freepost. If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+{% extends 'AppBundle:Default:Community/template.html.twig' %}
+
+{% block title %}
+    About: {{ community.name }}
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    
+    {% javascripts
+        '@AppBundle/Resources/public/js/Community/about.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block content %}
+    
+    <div class="about">
+        
+        <input type="hidden" name="communityHashId" value="{{ community.hashId }}" />
+        
+        <div class="text">
+            {{ community.description|raw }}
+        </div>
+        
+        {# I need the ID to reference this CKEditor textarea from javascript #}
+        <div class="editor">
+            <textarea id="descriptionEditor" name="descriptionEditor" class="ckeditor" rows="1" cols="1"></textarea>
+        </div>
+        
+        {% if app.user %}
+            <ul id="menu" class="menu">
+                <li class="edit">
+                    Edit
+                </li>
+                <li class="discard">
+                    Discard
+                </li>
+                <li class="save">
+                    Save
+                </li>
+                <li class="loading">
+                    {% image '@AppBundle/Resources/public/images/loading-bar.gif' %}
+                        <img id="loading" src="{{ asset_url }}" alt="" />
+                    {% endimage %}
+                </li>
+            </ul>
+        {% endif %}
+    </div>
+    
+{% endblock %}
+
+
+
+

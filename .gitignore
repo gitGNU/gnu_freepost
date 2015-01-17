@@ -1,0 +1,6 @@
+/app/cache/*
+/app/config/parameters.yml
+/app/config/parameters.prod.yml
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep

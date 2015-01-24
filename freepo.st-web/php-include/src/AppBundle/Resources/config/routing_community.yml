@@ -1,0 +1,80 @@
+# freepost
+# http://freepo.st
+# 
+# Copyright © 2014-2015 zPlus
+# 
+# This file is part of freepost.
+# freepost is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# 
+# freepost is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with freepost. If not, see <http://www.gnu.org/licenses/>.
+
+freepost_community:
+    path:     /community/{communityName}
+    defaults: { _controller: AppBundle:Community:hotPosts }
+
+freepost_community_create:
+    path:     /createCommunity
+    defaults: { _controller: AppBundle:Community:create }
+    methods: [POST]
+
+# Sort posts by "New" (instead of "Hot")
+freepost_community_new:
+    path:     /community/{communityName}/new
+    defaults: { _controller: AppBundle:Community:newPosts }
+
+freepost_submit_new_post:
+    path:     /newPost/{communityHashId}
+    defaults: { _controller: AppBundle:Community:submitNewPost }
+    methods: [POST]
+
+freepost_community_about:
+    path:     /community/{communityName}/about
+    defaults: { _controller: AppBundle:Community:about }
+
+freepost_community_preferences:
+    path:     /community/{communityName}/preferences
+    defaults: { _controller: AppBundle:Community:preferences }
+
+freepost_community_update_name:
+    pattern:  /asset/community/{communityHashId}/updateDisplayName
+    defaults: { _controller: AppBundle:Community:updateDisplayName }
+    methods: [POST]
+
+freepost_community_update_description:
+    pattern:  /asset/community/{communityHashId}/updateDescription
+    defaults: { _controller: AppBundle:Community:updateDescription }
+    methods: [POST]
+
+freepost_community_update_picture:
+    pattern:  /asset/community/{communityHashId}/updatePicture
+    defaults: { _controller: AppBundle:Community:updatePicture }
+    methods: [POST]
+
+freepost_community_search:
+    path:     /communitySearch/{communityName}
+    defaults: { _controller: AppBundle:Community:search }
+    methods: [GET]
+    
+freepost_community_follow:
+    path:     /community/{communityHashId}/follow
+    defaults: { _controller: AppBundle:Community:follow }
+    methods: [POST]
+
+freepost_community_stop_following:
+    path:     /community/{communityHashId}/stopFollowing
+    defaults: { _controller: AppBundle:Community:stopFollowing }
+    methods: [POST]
+    
+    
+    
+    
+    

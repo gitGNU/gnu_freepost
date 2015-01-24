@@ -1,6 +1,6 @@
-/app/cache/*
-/app/config/parameters.yml
-/app/config/parameters.prod.yml
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
+/freepo.st-web/php-include/app/cache/*
+/freepo.st-web/php-include/app/config/parameters.yml
+/freepo.st-web/php-include/app/config/parameters.prod.yml
+/freepo.st-web/php-include/app/logs/*
+!freepo.st-web/php-include/app/cache/.gitkeep
+!freepo.st-web/php-include/app/logs/.gitkeep

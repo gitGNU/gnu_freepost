@@ -1,0 +1,66 @@
+# freepost
+# http://freepo.st
+# 
+# Copyright © 2014-2015 zPlus
+# 
+# This file is part of freepost.
+# freepost is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# 
+# freepost is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with freepost. If not, see <http://www.gnu.org/licenses/>.
+
+AppBundle\Entity\Community:
+    type: entity
+    table: `community`
+    repositoryClass: AppBundle\Entity\Repository\Community
+    entityListeners:
+        AppBundle\Entity\Listener\Community: ~
+
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    fields:
+        hashId:
+            type: string
+            length: 32
+        name:
+            column: `name`
+            type: string
+            length: 255
+        description:
+            column: `description`
+            type: text
+        created:
+            column: `created`
+            type: datetime
+
+    uniqueConstraints:
+        hashId:
+          columns: hashId
+
+        name:
+          columns: name
+
+    oneToMany:
+        posts:
+            targetEntity: Post
+            mappedBy: community
+
+    manyToMany:
+        users:
+            targetEntity: User
+            mappedBy: communities
+
+    lifecycleCallbacks: {  }

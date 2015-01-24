@@ -1,0 +1,30 @@
+# This files has some settings used to run freepost
+# 
+# - Make sure to change these settings to match your system requirements
+# - Rename this file to "parameters.yml"
+
+parameters:
+    database_driver:    pdo_mysql
+    database_host:      127.0.0.1
+    database_port:      ~
+    database_name:      freepost
+    database_user:      freepost
+    database_password:  freepost
+    
+    # (smtp, mail, sendmail, gmail)
+    mailer_transport:   smtp
+    mailer_host:        127.0.0.1
+    mailer_user:        ~
+    mailer_password:    ~
+    
+    locale: en
+    
+    # A secret key that's used to generate certain security-related tokens
+    secret: ThisTokenIsNotSoSecretChangeIt
+    
+    # Where static files are stored to
+    repository_master_path: ../../freepost-repository/
+    
+    # Where static files are read from
+    # This should probably be the URL to your "freepost-repository" directory
+    repository_slave_host:  http://localhost/freepost/freepost-repository/
